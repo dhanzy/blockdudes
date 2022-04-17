@@ -1,13 +1,23 @@
 import React from "react";
-import { Box, Grid, Typography, Container, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  Container,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import {
   AddBusinessOutlined,
   ForumOutlined,
   VolumeUpOutlined,
   AppSettingsAltOutlined,
 } from "@mui/icons-material";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ServiceCard from "../../components/ServiceCard";
-import { useTheme } from "@emotion/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
@@ -50,6 +60,62 @@ const services = [
 const Services = () => {
   const theme = useTheme();
   const small = useMediaQuery(theme.breakpoints.down("sm"));
+  const serviceHeader = React.useRef(null);
+  const serviceSubHeading = React.useRef(null);
+  const serviceSubSubHeading = React.useRef(null);
+  const serviceText = React.useRef(null);
+  const revealRefs = React.useRef([]);
+  revealRefs.current = [];
+  const addToRefs = (el) => {
+    if (el && !revealRefs.current.includes(el)) {
+      revealRefs.current.push(el);
+    }
+  };
+  React.useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: serviceHeader.current,
+        },
+      })
+      .from(serviceHeader.current, {
+        x: "-50%",
+        opacity: 0,
+      })
+      .from(serviceSubHeading.current, {
+        x: "50%",
+        opacity: 0,
+      })
+      .from(serviceSubSubHeading.current, {
+        x: "-50%",
+        opacity: 0,
+      })
+      .from(serviceText.current, {
+        x: "50%",
+        opacity: 0,
+      });
+  });
+
+  React.useEffect(() => {
+    revealRefs.current.forEach((el, index) => {
+      gsap.fromTo(
+        el,
+        {
+          autoAlpha: 0,
+        },
+        {
+          duration: 1,
+          autoAlpha: 1,
+          ease: "none",
+          delay: !small ? index + 1 * 1 : 0,
+          scrollTrigger: {
+            trigger: el,
+            start: "top center",
+          },
+        }
+      );
+    });
+  });
   return (
     <Container maxWidth="xl">
       <Box
@@ -58,18 +124,18 @@ const Services = () => {
         <Grid container spacing={2}>
           <Grid item lg={6} md={12} sm={12} sx={{ alignSelf: "center" }}>
             <Box>
-              <Typography variant="h5" className="header">
+              <Typography variant="h5" className="header" ref={serviceHeader}>
                 LOREM IPSUM
               </Typography>
               <Box sx={{ mt: 5 }}>
-                <Typography variant="h3">
+                <Typography variant="h3" sx={{ mb: 2 }} ref={serviceSubHeading}>
                   WE DEVELOP BLOCKCHAIN SOLUTIONS
                 </Typography>
-                <Typography variant="h5">
+                <Typography variant="h5" ref={serviceSubSubHeading}>
                   FROM IDEA TO IMPLEMENTATION WE&apos;RE HERE TO HELP
                 </Typography>
                 <Box sx={{ mt: 5 }}>
-                  <Typography component="p">
+                  <Typography component="p" ref={serviceText}>
                     We&apos; are born problem solvers - From to web development
                     and design - <br />
                     launching human solutions is in ourDNA
@@ -81,7 +147,7 @@ const Services = () => {
           <Grid item lg={6} md={12} sm={12}>
             <Grid container spacing={2}>
               {services.map((service, index) => (
-                <Grid item md={6} key={index}>
+                <Grid item md={6} key={index} ref={addToRefs}>
                   <ServiceCard
                     iconComponent={service.iconComponent}
                     title={service.title}

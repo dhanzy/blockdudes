@@ -28,6 +28,9 @@ const Portfolio = () => {
   let subheading = React.useRef();
   let leftcontainer = React.useRef();
   let rightcontainer = React.useRef();
+  let mobileGrid = React.useRef();
+  let gridText = React.useRef();
+  let gridChain = React.useRef();
 
   React.useEffect(() => {
     gsap
@@ -50,6 +53,21 @@ const Portfolio = () => {
         opacity: 0,
       })
       .from(rightcontainer.current, {
+        x: "-50px",
+        opacity: 0,
+      });
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: mobileGrid.current,
+          start: "top center",
+        },
+      })
+      .from(gridText.current, {
+        x: "-50px",
+        opacity: 0,
+      })
+      .from(gridChain.current, {
         x: "-50px",
         opacity: 0,
       });
@@ -105,13 +123,13 @@ const Portfolio = () => {
             </ImageContainer>
           </Grid>
         </Grid>
-        <Grid container className="mobile-grid">
+        <Grid container className="mobile-grid" ref={mobileGrid}>
           <Grid item md={6} sm={12} xs={12}>
-            <ImageContainer>
+            <ImageContainer ref={gridChain}>
               <img src={ChainLink} />
             </ImageContainer>
           </Grid>
-          <Grid item md={6}>
+          <Grid item md={6} ref={gridText}>
             <Box>
               <Typography variant="h3" sx={{ fontWeight: "800" }}>
                 Uncomporomising Web3 Infrastructure

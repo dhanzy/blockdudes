@@ -17,7 +17,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Navbar timeline={timeline} />
-      <Home timeline={timeline} />
+      <Home />
       <Footer />
     </ThemeProvider>
   );

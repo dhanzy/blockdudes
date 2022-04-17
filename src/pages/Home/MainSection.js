@@ -11,7 +11,10 @@ import {
 } from "@mui/material";
 import { Email, Twitter, Telegram } from "@mui/icons-material";
 import Scrollspy from "react-scrollspy";
-import propTypes from "prop-types";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const SocialLinks = styled(Box)(({ theme }) => ({
   position: "absolute",
@@ -200,7 +203,7 @@ const Cube = styled(Box)(({ theme }) => ({
   },
 }));
 
-const MainSection = ({ timeline }) => {
+const MainSection = () => {
   const theme = useTheme();
   const medium = useMediaQuery(theme.breakpoints.down("lg"));
   let socialLink = React.useRef(null);
@@ -209,26 +212,32 @@ const MainSection = ({ timeline }) => {
   let homeText2 = React.useRef(null);
   let cube = React.useRef(null);
   React.useEffect(() => {
-    timeline.from(socialLink, {
-      x: "-50px",
-      opacity: 0,
-    });
-    timeline.from(rightNav, {
-      x: "-50px",
-      opacity: 0,
-    });
-    timeline.from(homeText1, {
-      x: "-50px",
-      opacity: 0,
-    });
-    timeline.from(homeText2, {
-      x: "50px",
-      opacity: 0,
-    });
-    timeline.from(cube, {
-      duration: 1,
-      opacity: 0,
-    });
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: homeText1,
+        },
+      })
+      .from(socialLink, {
+        x: "-50px",
+        opacity: 0,
+      })
+      .from(rightNav, {
+        x: "-50px",
+        opacity: 0,
+      })
+      .from(homeText1, {
+        x: "-50px",
+        opacity: 0,
+      })
+      .from(homeText2, {
+        x: "50px",
+        opacity: 0,
+      })
+      .from(cube, {
+        duration: 1,
+        opacity: 0,
+      });
   });
   return (
     <>
@@ -345,7 +354,4 @@ const MainSection = ({ timeline }) => {
   );
 };
 
-MainSection.propTypes = {
-  timeline: propTypes.any.isRequired,
-};
 export default MainSection;

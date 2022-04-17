@@ -1,5 +1,9 @@
 import React from "react";
 import { styled } from "@mui/material";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const CanvasParticle = styled("canvas")(({ theme }) => ({
   position: "absolute",
@@ -22,6 +26,21 @@ const Canvas = () => {
   //   const sleep = (milliseconds) => {
   //     return new Promise((resolve) => setTimeout(resolve, milliseconds));
   //   };
+  React.useEffect(() => {
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: canvasRef.current,
+          start: "top center",
+        },
+      })
+      .from(canvasRef.current, {
+        x: "-50px",
+        opacity: 0,
+        delay: 3,
+        duration: 3,
+      });
+  });
   React.useEffect(function init() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");

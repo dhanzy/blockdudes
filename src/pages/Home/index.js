@@ -124,12 +124,12 @@ const teams = [
   },
 ];
 
-const Home = ({ timeline }) => {
+const Home = () => {
   return (
     <Box component="main">
       <Section sx={{ minHeight: "100vh" }} id="home">
         <Canvas />
-        <MainSection timeline={timeline} />
+        <MainSection />
       </Section>
       <Section id="portfolio">
         <Portfolio />
