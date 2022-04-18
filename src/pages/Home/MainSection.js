@@ -332,13 +332,13 @@ const MainSection = () => {
       {!medium && (
         <RightNav ref={(el) => (rightNav = el)}>
           <Scrollspy
-            items={["home", "portfolio", "team", "contact"]}
+            items={["home", "portfolio", "clients", "contact"]}
             currentClassName="is-current"
           >
             <a href="#home">
               <Box className="round" />
             </a>
-            <a href="#portfolio">
+            <a href="#clients">
               <Box className="round" />
             </a>
             <a href="#team">

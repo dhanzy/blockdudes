@@ -1,23 +1,19 @@
 /* eslint-disable react/prop-types */
 import React from "react";
-import {
-  styled,
-  Box,
-  Typography,
-  Container,
-  Grid,
-  Button,
-} from "@mui/material";
+import { styled, Box, Container } from "@mui/material";
 
 import OverLay1 from "../../assets/images/1st.jpg";
 import OverLay2 from "../../assets/images/2nd.jpg";
-import Services from "./Services";
+
 import Canvas from "../../components/Canvas";
-import Portfolio from "./Portfolio";
-import TeamSection from "./TeamSection";
 import ContactSection from "../../components/ContactSection";
+
+import Portfolio from "./Portfolio";
+import Clients from "./Clients";
+// import TeamSection from "./TeamSection";
+import Services from "./Services";
 import MainSection from "./MainSection";
-import Blog from "./Blog";
+// import Blog from "./Blog";
 import RoadMap from "./RoadMap";
 
 const Section = styled("section")(({ theme }) => ({
@@ -87,42 +83,32 @@ const Section = styled("section")(({ theme }) => ({
   },
 }));
 
-const PortfolioContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: "rgba(0,0,0,0.5)",
-  padding: "3rem 2rem",
-  position: "relative",
-  zIndex: 500,
-  [theme.breakpoints.down("sm")]: {
-    padding: "3rem .5rem",
-  },
-}));
-
-const teams = [
-  {
-    name: "John Doe",
-    position: "Chief Manager",
-    imageUrl:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-  },
-  {
-    name: "John Doe",
-    position: "Chief Manager",
-    imageUrl:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-  },
-  {
-    name: "John Doe",
-    position: "Chief Manager",
-    imageUrl:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-  },
-  {
-    name: "John Doe",
-    position: "Chief Manager",
-    imageUrl:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
-  },
-];
+// const teams = [
+//   {
+//     name: "John Doe",
+//     position: "Chief Manager",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+//   },
+//   {
+//     name: "John Doe",
+//     position: "Chief Manager",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+//   },
+//   {
+//     name: "John Doe",
+//     position: "Chief Manager",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+//   },
+//   {
+//     name: "John Doe",
+//     position: "Chief Manager",
+//     imageUrl:
+//       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+//   },
+// ];
 
 const Home = () => {
   return (
@@ -132,62 +118,25 @@ const Home = () => {
         <MainSection />
       </Section>
       <Section id="portfolio">
-        <Portfolio />
-      </Section>
-      <Section>
         <Container maxWidth="xl">
-          <PortfolioContainer>
-            <Grid container spacing={2} className="mobile-grid">
-              <Grid item md={6} sm={12}>
-                <Box>
-                  <Typography component="p">
-                    By thinking globally, we&apos;re a powerful team without
-                    compromise or regard for borders. This has allowed us to
-                    hire the top designers, engineers and managers to deliver
-                    the very best human solutions.
-                  </Typography>
-                  <Box sx={{ mt: 5 }}>
-                    <Button variant="contained" color="secondary">
-                      MORE ABOUT US
-                    </Button>
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid item md={6} sm={12}>
-                <Box>
-                  <Box color="secondary">
-                    <Typography
-                      className="header"
-                      variant="h5"
-                      color="secondary"
-                    >
-                      LOREM IPSUM
-                    </Typography>
-                    <Box sx={{ mt: 3 }}>
-                      <Typography variant="h2">
-                        INTELLIGENCE <br />
-                        WITHOUT BORDERS
-                      </Typography>
-                    </Box>
-                  </Box>
-                </Box>
-              </Grid>
-            </Grid>
-          </PortfolioContainer>
+          <Portfolio />
         </Container>
+      </Section>
+      <Section id="clients">
+        <Clients />
       </Section>
       <Section>
         <Services />
       </Section>
-      <Section id="team">
+      {/* <Section id="team">
         <TeamSection teams={teams} />
-      </Section>
+      </Section> */}
       <Section>
         <RoadMap />
       </Section>
-      <Section id="blog">
+      {/* <Section id="blog">
         <Blog />
-      </Section>
+      </Section> */}
       <Section id="contact">
         <ContactSection />
       </Section>

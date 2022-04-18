@@ -15,7 +15,7 @@ import {
   CardMedia,
 } from "@mui/material";
 import { Menu } from "@mui/icons-material";
-import Logo from "../assets/images/logo.svg";
+import Logo from "../assets/images/logo.png";
 import Aside from "./Aside";
 
 const HideOnScroll = ({ children }) => {
@@ -92,7 +92,7 @@ const Navbar = ({ timeline }) => {
               {!small ? (
                 <Box ref={(el) => (menuItems = el)}>
                   <NavButton href="#portfolio">Portfolio</NavButton>
-                  <NavButton href="#team">Team</NavButton>
+                  <NavButton href="#clients">Clients</NavButton>
                   <NavButton href="#portfolio">Contact</NavButton>
                 </Box>
               ) : (

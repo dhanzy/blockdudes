@@ -52,11 +52,11 @@ const Aside = ({ drawerState, setDrawerState, menuItems }) => {
             </ListItemIcon>
             <ListItemText primary="portfolio" />
           </ListItem>
-          <ListItem button component="a" href="#team">
+          <ListItem button component="a" href="#clients">
             <ListItemIcon>
               <Groups fontSize="large" />
             </ListItemIcon>
-            <ListItemText>Team</ListItemText>
+            <ListItemText>Clients</ListItemText>
           </ListItem>
           <ListItem button component="a" href="#contact">
             <ListItemIcon>
