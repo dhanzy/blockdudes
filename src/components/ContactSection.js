@@ -133,7 +133,10 @@ const ContactSection = () => {
                       });
                       setSnackOpen(true);
                     }
-                  );
+                  )
+                  .catch((error) => {
+                    console.log(error);
+                  });
               }}
             >
               {({
